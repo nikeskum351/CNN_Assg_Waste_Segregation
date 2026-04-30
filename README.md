@@ -28,15 +28,9 @@ o	word2vec_model = api.load('word2vec-google-news-300')
 ________________________________________
 📊 3. Visualizations
 🏢 Distribution of Character Lengths – Cleaned Text
- 
-Cleaned Text Histogram
 ⚙️ Distribution of Character Lengths – Lemmatized Text
- 
-Lemmatized Text Histogram
 ✅ Word Cloud – True News
-
 ❌ Word Cloud – Fake News
-
 ________________________________________
 ⚙️ 4. Techniques Used
 •	Preprocessing: spaCy for lemmatization and stopword removal
