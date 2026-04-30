@@ -1,56 +1,110 @@
-📰 Fake News Detection Using NLP and Machine Learning
-________________________________________
-📌 1. Problem Statement
-With the explosion of digital news sources, fake news has become a major threat to public trust and informed decision-making. The objective of this project is to develop an NLP-based machine learning model to classify news articles as either true or fake, based on their textual content.
-________________________________________
-🧪 2. Methodology (Tasks from Starter Notebook)
-1. Data Preparation
-•	Combined True.csv and Fake.csv datasets, each containing title, text, and publication date.
-•	Assigned labels: 1 for true, 0 for fake.
-2. Text Preprocessing
-•	Performed tokenization, lowercasing, punctuation and digit removal.
-•	Used spaCy for lemmatization and stopword removal.
-3. Train-Validation Split
-•	Split data using an 80:30 ratio for training and validation.
-4. Exploratory Data Analysis (EDA)
-•	Plotted distribution of character lengths before and after preprocessing.
-•	Generated word clouds to analyze common terms in both true and fake news.
-•	Displayed top 10 unigrams, bigrams, and trigrams for both fake and true news.
-5. Feature Extraction
-•	Applied TF-IDF Vectorization to transform text into numerical format.
-•	Additionally, used pre-trained embedding’s with word2vec-google-news-300 from the Gensim API:
-o	import gensim.downloader as api
-o	word2vec_model = api.load('word2vec-google-news-300')
-•	These embedding’s enabled semantic similarity checks and enhanced understanding of context beyond surface-level token frequency.
-6. Model Training and Evaluation
-•	Trained and tested Random Forest, Logistic Regression, and Decision Tree classifiers.
-•	Chose Random Forest as the best model based on evaluation metrics.
-________________________________________
-📊 3. Visualizations
-🏢 Distribution of Character Lengths – Cleaned Text
-⚙️ Distribution of Character Lengths – Lemmatized Text
-✅ Word Cloud – True News
-❌ Word Cloud – Fake News
-________________________________________
-⚙️ 4. Techniques Used
-•	Preprocessing: spaCy for lemmatization and stopword removal
-•	TF-IDF Vectorization: Converted text to weighted word vectors
-•	Word Embedding’s: Pre-trained Word2Vec (word2vec-google-news-300) for semantic vectorization
-•	Classification Models: Random Forest (best), Logistic Regression, Decision Tree
-•	Metrics: Accuracy, Precision, Recall, F1 Score, Confusion Matrix
-________________________________________
-🏆 5. Model Results
-•	Best Model: ✅ Random Forest
-•	Accuracy: 0.9003
-•	Precision: 0.9082
-•	Recall: 0.8817
-•	F1 Score: 0.8947
-F1 Score was prioritized to balance false positives and false negatives.
-________________________________________
-🔍 6. Insights & Conclusion
-•	True news used structured language tied to real events; fake news favored sensational tone.
-•	Semantic classification via TF-IDF and Word2Vec helped reveal deeper contextual meaning.
-•	Random Forest achieved nearly 90% accuracy and generalizable results.
-•	Effective for real-world tools in news filtering, fact-checking, and misinformation detection.
+# Waste Material Segregation Using CNN
 
+A deep learning project that uses a Convolutional Neural Network (CNN) to classify waste images into material categories for better waste segregation and recycling support.
 
+## Objective
+
+The goal of this project is to build an image classification model that can automatically identify waste material types from images and classify them into one of the following 7 categories:
+
+- Cardboard
+- Food Waste
+- Glass
+- Metal
+- Other
+- Paper
+- Plastic
+
+## Dataset
+
+- Total images: **7625**
+- Number of classes: **7**
+- Image size used for training: **224 × 224**
+- Labels were derived from folder names in the dataset directory
+
+## Project Workflow
+
+### 1. Data Loading
+- Loaded the dataset from the source directory
+- Read images class-wise from folders
+- Mapped folder names to class labels
+
+### 2. Data Preprocessing
+- Resized all images to **224 × 224**
+- Converted images into array format
+- Normalized pixel values using `1./255`
+- Encoded class labels using label encoding and one-hot encoding
+
+### 3. Data Visualization
+- Plotted class distribution across all categories
+- Displayed sample images from each waste type
+- Verified image dimensions before training
+
+### 4. Data Splitting
+The dataset was divided into:
+- **Training set:** 5340 images
+- **Validation set:** 1141 images
+- **Test set:** 1144 images
+
+### 5. Model Building
+A CNN model was built using:
+- Convolution layers
+- ReLU activation
+- MaxPooling layers
+- Dropout layers
+- Dense layers
+- Softmax output layer
+
+### 6. Training Setup
+- Optimizer: `adam`
+- Loss function: `categorical_crossentropy`
+- Metric: `accuracy`
+
+### 7. Callbacks Used
+- `EarlyStopping`
+- `ReduceLROnPlateau`
+
+### 8. Data Augmentation
+To improve generalization, augmentation techniques such as rotation, shifting, shear, zoom, and horizontal flip were used.
+
+## Best Model Configuration
+
+The best-performing model used:
+
+- 4 convolution layers
+- Filters: `32, 64, 128, 128`
+- Kernel size: `(3, 3)`
+- Pool size: `(2, 2)`
+- Activation: `relu`
+- Dropout: `0.25` and `0.5`
+
+## Results
+
+### Performance
+- Training Accuracy: **0.5650**
+- Validation Accuracy: **0.5118**
+- Test Accuracy: **0.55**
+- Weighted F1-Score: **0.52**
+
+### Observations
+- Plastic showed the strongest recall
+- Glass, Other, and Paper were frequently misclassified
+- Class imbalance affected overall performance
+- The model provides a reasonable baseline for waste classification
+
+## Challenges
+
+- Class imbalance across categories
+- Visual similarity between some waste classes
+- Moderate model performance with a basic CNN architecture
+
+## Future Improvements
+
+- Use transfer learning models such as ResNet, MobileNet, or EfficientNet
+- Apply class balancing techniques
+- Perform hyperparameter tuning
+- Improve augmentation and regularization
+- Experiment with deeper architectures
+
+## Conclusion
+
+This project demonstrates the use of CNNs for automated waste material classification. While the current model achieves moderate accuracy, it establishes a solid baseline for building smarter and more scalable waste segregation systems.
